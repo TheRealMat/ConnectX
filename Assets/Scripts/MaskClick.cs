@@ -27,7 +27,6 @@ public class MaskClick : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //board.MaskClicked(index);
             gm.MaskClicked();
         }
     }

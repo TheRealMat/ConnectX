@@ -30,8 +30,10 @@ public class Board : MonoBehaviour
     {
         disks = new GameObject[boardColumns, boardRows];
         masks = new GameObject[boardColumns];
+        
         DrawGrid();
     }
+
 
     public void CreateGhost(Player player)
     {
@@ -87,17 +89,19 @@ public class Board : MonoBehaviour
         disk.GetComponent<Disc>().player = player;
         disk.GetComponent<Renderer>().material.color = player.color;
 
-        disks[(int)Position.y, columnRow] = disk;
+        disks[columnRow, (int)Position.y] = disk;
         return true;
     }
 
     private bool GetValidPosition(ref Vector3 vector)
     {
-        for (int i = 0; i < boardRows; i++)
+        // Height
+        for (int y = 0; y < boardRows; y++)
         {
-            if (disks[i, columnRow] == null)
+            // Width (columnRow) is already set
+            if (disks[columnRow, y] == null)
             {
-                vector = new Vector3(columnRow, i, 0);
+                vector = new Vector3(columnRow, y, 0);
                 return true;
             }
         }
@@ -121,13 +125,15 @@ public class Board : MonoBehaviour
 
     private void DrawGrid()
     {
+        // Width
         for (int column = 0; column < boardColumns; column++)
         {
             CreateMask(column);
 
+            // Height
             for (int row = 0; row < boardRows; row++)
             {
-                Vector3 position = new Vector3(row, column, 0);
+                Vector3 position = new Vector3(column, row, 0);
                 Instantiate(connectorPrefab, position, Quaternion.identity, this.transform);
             }
         }

@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         board.MoveGhost();
     }
-    
+
     public void HideGhost()
     {
         board.HideGhost();
