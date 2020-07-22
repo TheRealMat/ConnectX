@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29142c446e0f1514f83d080a9b5bf1b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: Player 2
+  playerName: GREEN TEAM GREEN TEAM
   color: {r: 0, g: 1, b: 0.008930683, a: 1}
 --- !u!4 &162112925
 Transform:
@@ -5144,6 +5144,7 @@ MonoBehaviour:
   players:
   - {fileID: 634855722}
   - {fileID: 1885337489}
+  - {fileID: 162112924}
   board: {fileID: 198334220}
 --- !u!1 &1687258581
 GameObject:

@@ -13,9 +13,9 @@ public class CheckWinner : MonoBehaviour
         GameObject disc = discs[(int)position.x, (int)position.y];
         Player player = disc.GetComponent<Disc>().player;
         
+        // Skip the first index because it's the object itself
         for (int i = 1; i < connectX; i++)
         {
-
             position.x += steps.x;
             position.y += steps.y;
 
@@ -26,7 +26,7 @@ public class CheckWinner : MonoBehaviour
             }
 
             GameObject cursor = discs[(int)position.x, (int)position.y];
-            // No disc here 😫😫😫😫😫
+            // Nothing here 😫😫😫😫😫
             if (cursor == null)
             {
                 return null;
@@ -37,7 +37,7 @@ public class CheckWinner : MonoBehaviour
             if (cursorOwner != player)
             {
                 return null;
-            }            
+            }
         }
 
         return player;

@@ -32,7 +32,7 @@ public class Board : MonoBehaviour
         checkWinner = gameObject.GetComponent<CheckWinner>();
         discs = new GameObject[boardColumns, boardRows];
         masks = new GameObject[boardColumns];
-        
+
         DrawGrid();
     }
 
