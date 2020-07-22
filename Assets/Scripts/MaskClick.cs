@@ -5,9 +5,13 @@ using UnityEngine;
 public class MaskClick : MonoBehaviour
 {
 
-    public Board board;
+    public GameManager gm;
     public int index;
 
+    private void Start()
+    {
+        gm = FindObjectOfType<GameManager>();
+    }
 
     private void OnMouseEnter()
     {
@@ -22,7 +26,8 @@ public class MaskClick : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            board.MaskClicked(index);
+            //board.MaskClicked(index);
+            gm.MaskClicked(index);
         }
     }
 

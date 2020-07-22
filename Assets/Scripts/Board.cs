@@ -26,22 +26,24 @@ public class Board : MonoBehaviour
         DrawGrid();
     }
 
-    public void MaskClicked(int index)
+    public bool MaskClicked(int columnRow, Player player)
     {
-        Debug.Log($"({index} pressed. {CheckPlacement(index)})");
-        PlaceDisk(index);
+        return PlaceDisk(columnRow, player);
     }
 
-    public void PlaceDisk(int columnRow)
+    public bool PlaceDisk(int columnRow, Player player)
     {
         int position = CheckPlacement(columnRow);
         if (position == -1){
-            return;
+            return false;
         }
 
         GameObject disk = Instantiate(diskPrefab, new Vector3(columnRow, position, 0), diskPrefab.transform.rotation);
-        disks[position, columnRow] = disk;
+        disk.GetComponent<Disc>().player = player;
+        disk.GetComponent<Renderer>().material.color = player.color;
 
+        disks[position, columnRow] = disk;
+        return true;
     }
 
     private int CheckPlacement(int columnRow)
@@ -66,7 +68,6 @@ public class Board : MonoBehaviour
         MaskClick tmp = mask.gameObject.transform.GetChild(0).GetComponent<MaskClick>();
 
         tmp.index = index;
-        tmp.board = this;
 
         masks[index] = mask;
     }
