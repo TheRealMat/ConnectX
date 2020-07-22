@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     {
         if (board.PlaceDisk(currentPlayer))
         {
+            board.EvaluateBoard();
             NextTurn();
         }
     }

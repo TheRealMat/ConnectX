@@ -8,6 +8,7 @@ public class Board : MonoBehaviour
     public GameObject connectorPrefab;
     public GameObject diskPrefab;
     public GameObject columnMask;
+    private CheckWinner checkWinner;
 
     public Material ghostMaterial;
     private GameObject ghost;
@@ -28,6 +29,7 @@ public class Board : MonoBehaviour
 
     private void Start()
     {
+        checkWinner = gameObject.GetComponent<CheckWinner>();
         disks = new GameObject[boardColumns, boardRows];
         masks = new GameObject[boardColumns];
         
@@ -137,6 +139,10 @@ public class Board : MonoBehaviour
                 Instantiate(connectorPrefab, position, Quaternion.identity, this.transform);
             }
         }
+    }
 
+    public void EvaluateBoard()
+    {
+        checkWinner.EvaluateBoard(disks);
     }
 }
