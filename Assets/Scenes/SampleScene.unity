@@ -5016,7 +5016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29142c446e0f1514f83d080a9b5bf1b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: Player 1
+  playerName: Red
   color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &634855723
 Transform:
@@ -5144,7 +5144,6 @@ MonoBehaviour:
   players:
   - {fileID: 634855722}
   - {fileID: 1885337489}
-  - {fileID: 162112924}
   board: {fileID: 198334220}
 --- !u!1 &1687258581
 GameObject:
@@ -5331,7 +5330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29142c446e0f1514f83d080a9b5bf1b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: Player 2
+  playerName: xXx_DragonSl4R_xXx
   color: {r: 0, g: 0, b: 1, a: 1}
 --- !u!4 &1885337490
 Transform:

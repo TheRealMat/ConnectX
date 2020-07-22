@@ -10,13 +10,16 @@ public class GameManager : MonoBehaviour
     Player currentPlayer;
     int currentTurnIndex = 0;
 
-
-
     public void MaskClicked()
     {
-        if (board.PlaceDisk(currentPlayer))
+        Vector2 lastPos = Vector2.zero;
+        if (board.PlaceDisk(currentPlayer, ref lastPos))
         {
-            board.EvaluateBoard();
+            Player winner = board.EvaluateBoard(lastPos);
+            if (winner != null)
+            {
+                Debug.Log($"{winner.playerName} won! Very cool");
+            }
             NextTurn();
         }
     }

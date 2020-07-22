@@ -19,7 +19,7 @@ public class Board : MonoBehaviour
     [Range(1, 50)]
     public int boardRows = 10;
 
-    private GameObject[,] disks;
+    private GameObject[,] discs;
 
     public GameObject[] masks;
 
@@ -30,7 +30,7 @@ public class Board : MonoBehaviour
     private void Start()
     {
         checkWinner = gameObject.GetComponent<CheckWinner>();
-        disks = new GameObject[boardColumns, boardRows];
+        discs = new GameObject[boardColumns, boardRows];
         masks = new GameObject[boardColumns];
         
         DrawGrid();
@@ -80,7 +80,7 @@ public class Board : MonoBehaviour
         this.columnRow = columnRow;
     }
 
-    public bool PlaceDisk(Player player)
+    public bool PlaceDisk(Player player, ref Vector2 lastPos)
     {
         Vector3 Position = Vector3.zero;
         if (!GetValidPosition(ref Position)){
@@ -91,7 +91,8 @@ public class Board : MonoBehaviour
         disk.GetComponent<Disc>().player = player;
         disk.GetComponent<Renderer>().material.color = player.color;
 
-        disks[columnRow, (int)Position.y] = disk;
+        discs[columnRow, (int)Position.y] = disk;
+        lastPos = new Vector2(columnRow, (int)Position.y);
         return true;
     }
 
@@ -101,7 +102,7 @@ public class Board : MonoBehaviour
         for (int y = 0; y < boardRows; y++)
         {
             // Width (columnRow) is already set
-            if (disks[columnRow, y] == null)
+            if (discs[columnRow, y] == null)
             {
                 vector = new Vector3(columnRow, y, 0);
                 return true;
@@ -141,8 +142,33 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void EvaluateBoard()
+    public Player EvaluateBoard(Vector2 lastPas)
     {
-        checkWinner.EvaluateBoard(disks);
+        Vector2[] rules = {
+            // Horizontal
+            new Vector2(0, 1),
+            new Vector2(0, -1),
+            
+            // Vertical
+            new Vector2(1, 0),
+            new Vector2(-1, 0),
+
+            // Diagonal
+            new Vector2(1, 1),
+            new Vector2(-1, -1),
+            new Vector2(1, -1),
+            new Vector2(-1, 1)
+        };
+
+        foreach (Vector2 v2 in rules)
+        {
+            Player p = checkWinner.CheckForWinner(discs, lastPas, v2);
+            if (p != null)
+            {
+                return p;
+            }
+        }
+
+        return null;
     }
 }
