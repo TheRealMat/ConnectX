@@ -9,6 +9,9 @@ public class Board : MonoBehaviour
     public GameObject diskPrefab;
     public GameObject columnMask;
 
+    public Material ghostMaterial;
+    private GameObject ghost;
+
     [Range(1, 50)]
     public int boardColumns = 10;
 
@@ -19,6 +22,10 @@ public class Board : MonoBehaviour
 
     public GameObject[] masks;
 
+
+    private int columnRow;
+
+
     private void Start()
     {
         disks = new GameObject[boardColumns, boardRows];
@@ -26,36 +33,75 @@ public class Board : MonoBehaviour
         DrawGrid();
     }
 
-    public bool MaskClicked(int columnRow, Player player)
+    public void CreateGhost(Player player)
     {
-        return PlaceDisk(columnRow, player);
+        ghost = Instantiate(diskPrefab, Vector3.zero, diskPrefab.transform.rotation);
+        ghost.GetComponent<Disc>().player = player;
+
+        UpdateGhostColor(player);
+
+        ghost.SetActive(false);
     }
 
-    public bool PlaceDisk(int columnRow, Player player)
+    public void UpdateGhostColor(Player player)
     {
-        int position = CheckPlacement(columnRow);
-        if (position == -1){
+        Color tmp = player.color;
+        tmp.a = 0.5f;
+
+        Renderer rend = ghost.GetComponent<Renderer>();
+        rend.material = ghostMaterial;
+        rend.material.color = tmp;
+    }
+
+    public void MoveGhost()
+    {
+        Vector3 Position = Vector3.zero;
+        if (!GetValidPosition(ref Position))
+        {
+            ghost.SetActive(false);
+            return;
+        }
+        ghost.SetActive(true);
+        ghost.transform.position = Position;
+
+    }
+
+    public void HideGhost()
+    {
+        ghost.SetActive(false);
+    }
+
+    public void UpdateCurrentMouseOverColumnRow(int columnRow)
+    {
+        this.columnRow = columnRow;
+    }
+
+    public bool PlaceDisk(Player player)
+    {
+        Vector3 Position = Vector3.zero;
+        if (!GetValidPosition(ref Position)){
             return false;
         }
 
-        GameObject disk = Instantiate(diskPrefab, new Vector3(columnRow, position, 0), diskPrefab.transform.rotation);
+        GameObject disk = Instantiate(diskPrefab, Position, diskPrefab.transform.rotation);
         disk.GetComponent<Disc>().player = player;
         disk.GetComponent<Renderer>().material.color = player.color;
 
-        disks[position, columnRow] = disk;
+        disks[(int)Position.y, columnRow] = disk;
         return true;
     }
 
-    private int CheckPlacement(int columnRow)
+    private bool GetValidPosition(ref Vector3 vector)
     {
         for (int i = 0; i < boardRows; i++)
         {
             if (disks[i, columnRow] == null)
             {
-                return i;
+                vector = new Vector3(columnRow, i, 0);
+                return true;
             }
         }
-        return -1;
+        return false;
     }
 
     private void CreateMask(int index)

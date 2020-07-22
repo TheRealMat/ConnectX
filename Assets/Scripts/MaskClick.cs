@@ -15,11 +15,12 @@ public class MaskClick : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        // show ghost
+        gm.CurrentMouseOverColumnRow(index);
+        gm.MoveGhost();
     }
     private void OnMouseExit()
     {
-        // stop showing ghost
+        gm.HideGhost();
     }
 
     void OnMouseOver()
@@ -27,7 +28,7 @@ public class MaskClick : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //board.MaskClicked(index);
-            gm.MaskClicked(index);
+            gm.MaskClicked();
         }
     }
 

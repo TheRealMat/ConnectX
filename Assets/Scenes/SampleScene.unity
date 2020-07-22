@@ -121,6 +121,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &162112923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 162112925}
+  - component: {fileID: 162112924}
+  m_Layer: 0
+  m_Name: Player 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &162112924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162112923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29142c446e0f1514f83d080a9b5bf1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: Player 2
+  color: {r: 0, g: 1, b: 0.008930683, a: 1}
+--- !u!4 &162112925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162112923}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1764507, y: 3.795698, z: 7.1766806}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &198334218
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +215,7 @@ MonoBehaviour:
     type: 3}
   columnMask: {fileID: 8276428763441909660, guid: 84dfa870a046fbb4ba7fc07abf85c516,
     type: 3}
+  ghostMaterial: {fileID: 2100000, guid: 50f257f74dd68ee4c910d42a0c6435d3, type: 2}
   boardColumns: 10
   boardRows: 10
   masks: []
@@ -203,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Player 1
-  color: {r: 1, g: 0, b: 0, a: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &634855723
 Transform:
   m_ObjectHideFlags: 0
@@ -313,7 +359,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1257420858
 MonoBehaviour:
@@ -330,6 +376,7 @@ MonoBehaviour:
   players:
   - {fileID: 634855722}
   - {fileID: 1885337489}
+  - {fileID: 162112924}
   board: {fileID: 198334220}
 --- !u!1 &1687258581
 GameObject:
@@ -517,7 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Player 2
-  color: {r: 0, g: 0, b: 1, a: 0}
+  color: {r: 0, g: 0, b: 1, a: 1}
 --- !u!4 &1885337490
 Transform:
   m_ObjectHideFlags: 0

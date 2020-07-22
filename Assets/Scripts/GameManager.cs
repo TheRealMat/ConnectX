@@ -12,9 +12,9 @@ public class GameManager : MonoBehaviour
 
 
 
-    public void MaskClicked(int index)
+    public void MaskClicked()
     {
-        if (board.MaskClicked(index, currentPlayer))
+        if (board.PlaceDisk(currentPlayer))
         {
             NextTurn();
         }
@@ -23,21 +23,39 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartGame();
+        board.CreateGhost(currentPlayer);
     }
 
     private void StartGame()
     {
-        UpdatePlayerTurn();
+        UpdateCurrentPlayer();
     }
 
     private void NextTurn()
     {
         currentTurnIndex = (currentTurnIndex+1)%players.Count;
-        UpdatePlayerTurn();
+        UpdateCurrentPlayer();
+        board.UpdateGhostColor(currentPlayer);
+        MoveGhost();
     }
 
-    private void UpdatePlayerTurn()
+    private void UpdateCurrentPlayer()
     {
         currentPlayer = players[currentTurnIndex];
+    }
+
+    public void MoveGhost()
+    {
+        board.MoveGhost();
+    }
+    
+    public void HideGhost()
+    {
+        board.HideGhost();
+    }
+
+    public void CurrentMouseOverColumnRow(int columnRow)
+    {
+        board.UpdateCurrentMouseOverColumnRow(columnRow);
     }
 }
