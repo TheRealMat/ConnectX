@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fb0db58f759c74f9d2432ab2890168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectorPrefab: {fileID: 7120823595680181261, guid: 09218fcba68466846a0d1b3c21c8605e,
+  connectorPrefab: {fileID: 7350042731823727011, guid: 09218fcba68466846a0d1b3c21c8605e,
     type: 3}
   diskPrefab: {fileID: 1129765339728824137, guid: fc411bf38df76f74689f73ca5b31dae8,
     type: 3}
