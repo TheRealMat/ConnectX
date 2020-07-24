@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         board.CreateGhost(currentPlayer);
     }
 
-    private void StartGame()
+    public void StartGame()
     {
         UpdateCurrentPlayer();
     }
