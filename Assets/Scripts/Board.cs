@@ -33,9 +33,17 @@ public class Board : MonoBehaviour
         discs = new GameObject[boardColumns, boardRows];
         masks = new GameObject[boardColumns];
 
+        GenerateBoard();
+    }
+    private void GenerateBoard()
+    {
         DrawGrid();
     }
 
+    public void StartPlay()
+    {
+        GenerateMasks();
+    }
 
     public void CreateGhost(Player player)
     {
@@ -111,6 +119,14 @@ public class Board : MonoBehaviour
         return false;
     }
 
+    private void GenerateMasks()
+    {
+        for (int column = 0; column < boardColumns; column++)
+        {
+            CreateMask(column);
+        }
+    }
+
     private void CreateMask(int index)
     {
         Vector3 position = new Vector3(index, -0.5f, 0);
@@ -131,7 +147,6 @@ public class Board : MonoBehaviour
         // Width
         for (int column = 0; column < boardColumns; column++)
         {
-            CreateMask(column);
 
             // Height
             for (int row = 0; row < boardRows; row++)

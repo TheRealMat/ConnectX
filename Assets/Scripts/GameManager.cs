@@ -26,13 +26,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartGame();
-        board.CreateGhost(currentPlayer);
+
     }
 
     public void StartGame()
     {
         UpdateCurrentPlayer();
+        board.CreateGhost(currentPlayer);
+        board.StartPlay();
     }
 
     private void NextTurn()
