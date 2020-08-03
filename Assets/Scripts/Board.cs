@@ -30,13 +30,20 @@ public class Board : MonoBehaviour
     private void Start()
     {
         checkWinner = gameObject.GetComponent<CheckWinner>();
-        discs = new GameObject[boardColumns, boardRows];
-        masks = new GameObject[boardColumns];
+
 
         GenerateBoard();
     }
-    private void GenerateBoard()
+    public void GenerateBoard()
     {
+        // there's probably a more effecient way to do this but it works
+        foreach (Transform child in transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        discs = new GameObject[boardColumns, boardRows];
+        masks = new GameObject[boardColumns];
         DrawGrid();
     }
 
