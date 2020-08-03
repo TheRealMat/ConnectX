@@ -9,7 +9,6 @@ public class Board : MonoBehaviour
     public GameObject diskPrefab;
     public GameObject columnMask;
     private CheckWinner checkWinner;
-
     public Material ghostMaterial;
     private GameObject ghost;
 
@@ -31,11 +30,11 @@ public class Board : MonoBehaviour
     {
         checkWinner = gameObject.GetComponent<CheckWinner>();
 
-
         GenerateBoard();
     }
     public void GenerateBoard()
     {
+
         // there's probably a more effecient way to do this but it works
         foreach (Transform child in transform)
         {
