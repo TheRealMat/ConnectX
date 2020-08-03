@@ -19,12 +19,11 @@ public class CheckWinner : MonoBehaviour
             position.x += steps.x;
             position.y += steps.y;
 
-            // this does not work if you win by placing a disk between other disks
-            //// Out of bounds check
-            //if (position.x < 0 || position.y < 0 || position.x >= discs.GetLength(0) || position.y >= discs.GetLength(1))
-            //{
-            //    return null;
-            //}
+            // Out of bounds check
+            if (position.x < 0 || position.y < 0 || position.x >= discs.GetLength(0) || position.y >= discs.GetLength(1))
+            {
+                return null;
+            }
 
             GameObject cursor = discs[(int)position.x, (int)position.y];
             // Nothing here 😫😫😫😫😫
