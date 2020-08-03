@@ -6,6 +6,8 @@ public class CheckWinner : MonoBehaviour
 {
     public int connectX = 4;
 
+
+    // this does not work if you win by placing a disk between other disks
     public Player CheckForWinner(GameObject[,] discs, Vector2 position, Vector2 steps)
     {
    
