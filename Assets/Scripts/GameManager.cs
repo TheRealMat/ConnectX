@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public List<Player> players;
     public Board board;
-
+    public GameObject gameOptionsPanel;
     Player currentPlayer;
     int currentTurnIndex = 0;
 
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        gameOptionsPanel.SetActive(false);
         UpdateCurrentPlayer();
         board.CreateGhost(currentPlayer);
         board.StartPlay();
