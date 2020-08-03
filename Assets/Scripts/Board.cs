@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 public class Board : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class Board : MonoBehaviour
 
     public GameObject[] masks;
 
+    private OrbitCamera orbitCamera;
 
     private int columnRow;
 
@@ -29,11 +31,15 @@ public class Board : MonoBehaviour
     private void Start()
     {
         checkWinner = gameObject.GetComponent<CheckWinner>();
-
+        orbitCamera = FindObjectOfType<OrbitCamera>();
         GenerateBoard();
     }
     public void GenerateBoard()
     {
+        // this would be a good time to implement events
+        // sets camera's orbit target to middle of board
+        orbitCamera.target = new Vector3((boardColumns / 2f) -0.5f, (boardRows / 2f) -0.5f, 0);
+        
 
         // there's probably a more effecient way to do this but it works
         foreach (Transform child in transform)
