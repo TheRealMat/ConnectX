@@ -220,6 +220,7 @@ MonoBehaviour:
   boardColumns: 7
   boardRows: 6
   masks: []
+  streak: 0
 --- !u!114 &198334221
 MonoBehaviour:
   m_ObjectHideFlags: 0

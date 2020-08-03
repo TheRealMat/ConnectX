@@ -27,6 +27,7 @@ public class Board : MonoBehaviour
 
     private int columnRow;
 
+    public int streak;
 
     private void Start()
     {
@@ -183,16 +184,21 @@ public class Board : MonoBehaviour
             // Diagonal
             new Vector2(1, 1),
             new Vector2(-1, -1),
+
             new Vector2(1, -1),
             new Vector2(-1, 1)
         };
-
-        foreach (Vector2 v2 in rules)
+        
+        for (int i = 0; i < rules.Length; i += 2)
         {
-            Player p = checkWinner.CheckForWinner(discs, lastPas, v2);
-            if (p != null)
+            streak = checkWinner.CheckForWinner(discs, lastPas, rules[i]);
+            streak += checkWinner.CheckForWinner(discs, lastPas, rules[i + 1]);
+
+            // + 1 because current disk has to be counted too
+            if (streak + 1 >= checkWinner.connectX)
             {
-                return p;
+                // add win code
+                Debug.Log("a player has won");
             }
         }
 

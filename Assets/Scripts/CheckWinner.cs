@@ -7,9 +7,10 @@ public class CheckWinner : MonoBehaviour
     public int connectX = 4;
 
 
-    // this does not work if you win by placing a disk between other disks
-    public Player CheckForWinner(GameObject[,] discs, Vector2 position, Vector2 steps)
+    public int CheckForWinner(GameObject[,] discs, Vector2 position, Vector2 steps)
     {
+
+        int streak = 0;
    
         // The newly placed disc
         GameObject disc = discs[(int)position.x, (int)position.y];
@@ -24,25 +25,27 @@ public class CheckWinner : MonoBehaviour
             // Out of bounds check
             if (position.x < 0 || position.y < 0 || position.x >= discs.GetLength(0) || position.y >= discs.GetLength(1))
             {
-                return null;
+                return streak;
             }
 
             GameObject cursor = discs[(int)position.x, (int)position.y];
             // Nothing here 😫😫😫😫😫
             if (cursor == null)
             {
-                return null;
+                return streak;
             }
 
             Player cursorOwner = cursor.GetComponent<Disc>().player;
 
             if (cursorOwner != player)
             {
-                return null;
+                return streak;
             }
+
+            streak++;
         }
 
-        return player;
+        return streak;
     }
 
 
