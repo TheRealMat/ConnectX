@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     Player currentPlayer;
     int currentTurnIndex = 0;
 
+
+
     public void MaskClicked()
     {
         Vector2 lastPos = Vector2.zero;
