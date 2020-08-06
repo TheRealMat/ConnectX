@@ -29,19 +29,37 @@ public class ColorButton : MonoBehaviour
         button.colors = cb;
     }
 
-    public void ButtonPressed()
+    // used for disabled buttons
+    public void SetAvailable() 
     {
-
+        teamColors.colorsList[colorIndex].available = true;
+    }
+    // used to check if color is no longer available when button is reenabled
+    public void ResetButton()
+    {
+        if (teamColors.colorsList[colorIndex].available == true)
+        {
+            teamColors.colorsList[colorIndex].available = false;
+        }
+        else
+        {
+            // this breaks if the color of the button was taken. i need to make it so i can set the color without setting last color to available
+            ButtonPressed();
+        }
+        
+    }
+    public void NextColor()
+    {
         Debug.Log("button was pressed");
 
-        
+
 
         for (int i = colorIndex + 1; i < teamColors.colorsList.Length + colorIndex + 1; i++)
         {
             Debug.Log(i);
 
             // go to back to start of array
-            if ( i >= teamColors.colorsList.Length)
+            if (i >= teamColors.colorsList.Length)
             {
                 i = 0;
 
@@ -64,7 +82,7 @@ public class ColorButton : MonoBehaviour
                 colorIndex = i;
                 SetColor(i);
                 return;
-                
+
             }
             // no available color
             else if (i == colorIndex)
@@ -73,5 +91,11 @@ public class ColorButton : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void ButtonPressed()
+    {
+
+
     }
 }
