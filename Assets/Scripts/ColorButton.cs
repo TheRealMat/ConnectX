@@ -13,11 +13,11 @@ public class ColorButton : MonoBehaviour
     void Start()
     {
         button = gameObject.GetComponent<Button>();
-        SetColor(colorIndex);
+        CreateColors(colorIndex);
         teamColors.colorsList[colorIndex].available = false;
     }
 
-    private void SetColor(int index)
+    private void CreateColors(int index)
     {
         ColorBlock cb = button.colors;
 
@@ -44,15 +44,41 @@ public class ColorButton : MonoBehaviour
         else
         {
             // this breaks if the color of the button was taken. i need to make it so i can set the color without setting last color to available
-            ButtonPressed();
+            NextColor(false);
         }
         
     }
-    public void NextColor()
+
+    // changes color and sets old color to be available
+    private void SwitchColor(int i)
     {
-        Debug.Log("button was pressed");
+        Debug.Log("colors switching");
+        // set old color to be available
+        teamColors.colorsList[colorIndex].available = true;
+        Debug.Log($"{colorIndex} set to available");
+        // set new color to be taken
+        teamColors.colorsList[i].available = false;
+        Debug.Log($"{i} set to NOT available");
 
+        colorIndex = i;
+        CreateColors(i);
+        return;
+    }
 
+    // changes color and does not make any changes to old color (used for getting new color for reenabled button)
+    private void SetColor(int i)
+    {
+        Debug.Log("colors being set");
+        // set new color to be taken
+        teamColors.colorsList[i].available = false;
+        Debug.Log($"{i} set to NOT available");
+
+        colorIndex = i;
+        CreateColors(i);
+        return;
+    }
+    public void NextColor(bool ChangeOld)
+    {
 
         for (int i = colorIndex + 1; i < teamColors.colorsList.Length + colorIndex + 1; i++)
         {
@@ -69,19 +95,18 @@ public class ColorButton : MonoBehaviour
             // found available color
             if (teamColors.colorsList[i].available == true)
             {
-
                 Debug.Log("color available");
 
-                // set old color to be available
-                teamColors.colorsList[colorIndex].available = true;
-                Debug.Log($"{colorIndex} set to available");
-                // set new color to be taken
-                teamColors.colorsList[i].available = false;
-                Debug.Log($"{i} set to NOT available");
-
-                colorIndex = i;
-                SetColor(i);
-                return;
+                if (ChangeOld == true)
+                {
+                    SwitchColor(i);
+                    return;
+                }
+                else
+                {
+                    SetColor(i);
+                    return;
+                }
 
             }
             // no available color
@@ -95,7 +120,7 @@ public class ColorButton : MonoBehaviour
 
     public void ButtonPressed()
     {
-
-
+        Debug.Log("button was pressed");
+        NextColor(true);
     }
 }
