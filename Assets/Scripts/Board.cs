@@ -8,6 +8,8 @@ public class Board : MonoBehaviour
 {
     public GameObject connectorPrefab;
     public GameObject diskPrefab;
+    public GameObject sidePrefab;
+    public GameObject topPrefab;
     public GameObject columnMask;
     private CheckWinner checkWinner;
     public Material ghostMaterial;
@@ -51,6 +53,7 @@ public class Board : MonoBehaviour
         discs = new GameObject[boardColumns, boardRows];
         masks = new GameObject[boardColumns];
         DrawGrid();
+        DrawDetails();
     }
 
     public void StartPlay()
@@ -168,6 +171,27 @@ public class Board : MonoBehaviour
                 Instantiate(connectorPrefab, position, Quaternion.identity, this.transform);
             }
         }
+    }
+
+    private void DrawDetails()
+    {
+        int row;
+        // left
+        for (row = 0; row < boardRows; row++)
+        {
+            Vector3 position = new Vector3(-1, row, 0);
+            Instantiate(sidePrefab, position, sidePrefab.transform.rotation, this.transform);
+        }
+        Instantiate(topPrefab, new Vector3(-1, boardRows, 0), topPrefab.transform.rotation, this.transform);
+        row = 0;
+
+        // right
+        for (row = 0; row < boardRows; row++)
+        {
+            Vector3 position = new Vector3(boardColumns, row, 0);
+            Instantiate(sidePrefab, position, sidePrefab.transform.rotation, this.transform);
+        }
+        Instantiate(topPrefab, new Vector3(boardColumns, boardRows, 0), Quaternion.Euler(90, 0, 0), this.transform);
     }
 
     public Player EvaluateBoard(Vector2 lastPas)

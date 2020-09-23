@@ -52,13 +52,13 @@ public class ColorButton : MonoBehaviour
     // changes color and sets old color to be available
     private void SwitchColor(int i)
     {
-        Debug.Log("colors switching");
+        //Debug.Log("colors switching");
         // set old color to be available
         teamColors.colorsList[colorIndex].available = true;
-        Debug.Log($"{colorIndex} set to available");
+        //Debug.Log($"{colorIndex} set to available");
         // set new color to be taken
         teamColors.colorsList[i].available = false;
-        Debug.Log($"{i} set to NOT available");
+        //Debug.Log($"{i} set to NOT available");
 
         colorIndex = i;
         CreateColors(i);
@@ -68,10 +68,10 @@ public class ColorButton : MonoBehaviour
     // changes color and does not make any changes to old color (used for getting new color for reenabled button)
     private void SetColor(int i)
     {
-        Debug.Log("colors being set");
+        //Debug.Log("colors being set");
         // set new color to be taken
         teamColors.colorsList[i].available = false;
-        Debug.Log($"{i} set to NOT available");
+        //Debug.Log($"{i} set to NOT available");
 
         colorIndex = i;
         CreateColors(i);
@@ -82,20 +82,20 @@ public class ColorButton : MonoBehaviour
 
         for (int i = colorIndex + 1; i < teamColors.colorsList.Length + colorIndex + 1; i++)
         {
-            Debug.Log(i);
+            //Debug.Log(i);
 
             // go to back to start of array
             if (i >= teamColors.colorsList.Length)
             {
                 i = 0;
 
-                Debug.Log("went back to start of array");
+                //Debug.Log("went back to start of array");
             }
 
             // found available color
             if (teamColors.colorsList[i].available == true)
             {
-                Debug.Log("color available");
+                //Debug.Log("color available");
 
                 if (ChangeOld == true)
                 {
@@ -112,7 +112,7 @@ public class ColorButton : MonoBehaviour
             // no available color
             else if (i == colorIndex)
             {
-                Debug.Log("color NOT available");
+                //Debug.Log("color NOT available");
                 return;
             }
         }
@@ -120,7 +120,7 @@ public class ColorButton : MonoBehaviour
 
     public void ButtonPressed()
     {
-        Debug.Log("button was pressed");
+        //Debug.Log("button was pressed");
         NextColor(true);
     }
 }
