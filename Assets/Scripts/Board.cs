@@ -182,7 +182,7 @@ public class Board : MonoBehaviour
             Vector3 position = new Vector3(-1, row, 0);
             Instantiate(sidePrefab, position, sidePrefab.transform.rotation, this.transform);
         }
-        Instantiate(topPrefab, new Vector3(-1, boardRows, 0), topPrefab.transform.rotation, this.transform);
+        Instantiate(topPrefab, new Vector3(-1, boardRows + topPrefab.transform.position.y, 0), topPrefab.transform.rotation, this.transform);
         row = 0;
 
         // right
@@ -191,7 +191,7 @@ public class Board : MonoBehaviour
             Vector3 position = new Vector3(boardColumns, row, 0);
             Instantiate(sidePrefab, position, sidePrefab.transform.rotation, this.transform);
         }
-        Instantiate(topPrefab, new Vector3(boardColumns, boardRows, 0), Quaternion.Euler(90, 0, 0), this.transform);
+        Instantiate(topPrefab, new Vector3(boardColumns, boardRows + topPrefab.transform.position.y, 0), Quaternion.Euler(90, 0, 0), this.transform);
     }
 
     public Player EvaluateBoard(Vector2 lastPas)
